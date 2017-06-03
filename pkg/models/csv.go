@@ -2,6 +2,8 @@ package models
 
 import (
 	"encoding/csv"
+	"errors"
+	"fmt"
 	"io"
 	"log"
 	"os"
@@ -18,7 +20,9 @@ type CSV struct {
 func (c *CSV) Load(path string) error {
 	f, err := os.Open(path)
 	if err != nil {
-		log.Fatalf("open file %s error", path)
+		msg := fmt.Sprintf("open file %s error", path)
+		log.Fatal(msg)
+		return errors.New(msg)
 	}
 	defer f.Close()
 
@@ -28,9 +32,10 @@ func (c *CSV) Load(path string) error {
 	// read title
 	record, err := r.Read()
 	if err != nil {
-		log.Fatal("read csv error")
+		msg := "read csv error"
+		log.Fatal(msg)
+		return errors.New(msg)
 	}
-
 	c.headers = record
 
 	for {
@@ -38,13 +43,13 @@ func (c *CSV) Load(path string) error {
 		if err == io.EOF {
 			break
 		} else {
-			log.Fatal("read csv error")
+			msg := "read csv error"
+			log.Fatal(msg)
+			return errors.New(msg)
 		}
 
 		c.data = append(c.data, record)
 	}
-}
 
-func (c *CSV) toESJSON() ESJSON {
 	return nil
 }
