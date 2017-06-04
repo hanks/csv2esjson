@@ -16,8 +16,26 @@ limitations under the License.
 
 package main
 
-import "log"
+import (
+	"flag"
+	"fmt"
+
+	"csv2esjson/pkg/transfer"
+	"csv2esjson/pkg/version"
+	"os"
+)
 
 func main() {
-	log.Printf("hello, world!")
+	fmt.Println("Version: ", version.VERSION)
+
+	inPtr := flag.String("in", "", "path to input csv file")
+	outPtr := flag.String("out", "a.json", "path to output esjson file")
+	flag.Parse()
+
+	if *inPtr == "" {
+		flag.PrintDefaults()
+		os.Exit(1)
+	}
+
+	transfer.Execute(*inPtr, *outPtr)
 }
