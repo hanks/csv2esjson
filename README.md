@@ -22,7 +22,7 @@ to json format used in bulk load into elasticsearch:
 ```
 
 This is a docker based project, so all the dependencies are in the docker container, 
-and you just need to run `make command` to control build processes.
+and you just need to run `make command` to control development processes.
 
 ## Development
 
