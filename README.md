@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/hanks/csv2esjson.svg?branch=master)](https://travis-ci.org/hanks/csv2esjson)
+
 # CSV2ESJSON
 
 ## Introduction
